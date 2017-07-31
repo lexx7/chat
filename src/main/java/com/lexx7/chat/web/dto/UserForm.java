@@ -17,6 +17,8 @@ public class UserForm {
     @NotNull(message = "Цвет должен быть выбран")
     private String color;
 
+    private String password;
+
     public String getId() {
         return id;
     }
@@ -37,12 +39,21 @@ public class UserForm {
 
     public void setColor(String color) { this.color = color; }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "UserForm{" +
                 "id='" + id + '\'' +
                 ", login='" + login + '\'' +
                 ", color='" + color + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

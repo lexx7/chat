@@ -43,25 +43,23 @@
 	
 	<!-- Security -->
 	
-	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<!--<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>-->
 
-	<security:authentication-manager>
+	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider user-service-ref="userService" >
-			<security:password-encoder ref="passwordEncoder"/>
+			<!--<security:password-encoder ref="passwordEncoder"/>-->
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
 	<security:http use-expressions="true">
-	 	<security:intercept-url pattern="/main"
-								access="hasRole(T(com.lexx7.chat.model.security.UserRole).ROLE_USER.name())"/>
-	 	<security:intercept-url pattern="/"
-								access="hasRole(T(com.lexx7.chat.model.security.UserRole).ROLE_USER.name())"/>
-	 	<security:intercept-url pattern="/message/**"
-								access="hasRole(T(com.lexx7.chat.model.security.UserRole).ROLE_USER.name())"/>
+	 	<security:intercept-url pattern="/main" access="hasRole('ROLE_USER')"/>
+	 	<security:intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
+	 	<security:intercept-url pattern="/message/**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/login" access="permitAll"/>
+        <security:intercept-url pattern="/autologin" access="permitAll"/>
 
-        <security:form-login login-page="/login" default-target-url="/main" authentication-failure-url="/login?error=true"/>
-        <security:logout logout-url="/logout" logout-success-url="/login"/>
+        <security:form-login login-page="/autologin" default-target-url="/main" />
+        <security:logout logout-url="/logout" logout-success-url="/autologin"/>
     </security:http>
 
 </beans>

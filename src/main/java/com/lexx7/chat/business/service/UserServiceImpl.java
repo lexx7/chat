@@ -4,10 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 
+import com.lexx7.chat.web.dto.UserForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ import java.util.List;
 
 @Service("userService")
 @Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class); 
 	
@@ -76,6 +76,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		Predicate loginPredicate = criteriaBuilder.equal(root.get(User_.login), login);
 		
 		return em.createQuery(criteria.where(loginPredicate)).getSingleResult();
+	}
+
+	@Override
+	public User save(UserForm userForm) {
+		User user = new User();
+		user.setCreateTime(new Date());
+		user.setLogin(userForm.getLogin());
+		user.setColor(userForm.getColor());
+		user.setPassword(userForm.getPassword());
+
+		createUser(user);
+
+		return user;
 	}
 
 	@Override

@@ -20,7 +20,7 @@
 					<li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
-					<li>Hello,&#160;<sec:authentication property="principal.username"/></li>
+					<li class="navbar-brand">Hello,&#160;<sec:authentication property="principal.username"/></li>
 					<li>
 						<form:form action="${pageContext.request.contextPath}/logout">
 							<button class="btn btn-link navbar-btn" type="submit"><span class="glyphicon glyphicon-log-out"/> Выход</button>

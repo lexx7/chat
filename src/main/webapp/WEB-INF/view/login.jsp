@@ -8,18 +8,24 @@
 	<form:form class="form-horizontal" method="post" action="login">
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="username">Логин:</label>
+			<label class="control-label col-sm-2" for="username">Представьтесь:</label>
 			<div class="col-sm-10">
 				<input id="username" name="username" class="form-control"
-					placeholder="Введите логин" autofocus="autofocus" />
+					placeholder="Введите имя" autofocus="autofocus" />
 			</div>
 		</div>
 
+		<input id="password" name="password" type="hidden" value="1" />
+
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="password">Пароль:</label>
+			<label class="control-label col-sm-2" for="color">Выберите цвет текста:</label>
 			<div class="col-sm-10">
-				<input id="password" name="password" type="password"
-					class="form-control" placeholder="Введите пароль" />
+				<select id="color" name="color" class="form-control">
+					<option value="BLACK">Чёрный</option>
+					<option value="RED" style="color:red">Красный</option>
+					<option value="BLUE" style="color:blue">Синий</option>
+					<option value="GREEN" style="color:green">Зелёный</option>
+				</select>
 			</div>
 		</div>
 
